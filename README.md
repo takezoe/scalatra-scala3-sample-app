@@ -1,9 +1,9 @@
-# My Scalatra Web App #
+# Scalatra Sample Web App with Scala 3 
 
-## Build & Run ##
+## Build & Run
 
 ```sh
-$ cd my-scalatra-web-app
+$ cd  scalatra-scala3-sample-app
 $ sbt
 > jetty:start
 > browse
