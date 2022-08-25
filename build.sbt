@@ -1,4 +1,4 @@
-val ScalatraVersion = "3.0.0-M1"
+val ScalatraVersion = "3.0.0-M2"
 
 ThisBuild / scalaVersion := "3.1.3"
 ThisBuild / organization := "com.example"
@@ -11,10 +11,14 @@ lazy val hello = (project in file("."))
       "org.scalatra" %% "scalatra" % ScalatraVersion,
       "org.scalatra" %% "scalatra-scalatest" % ScalatraVersion % "test",
       "ch.qos.logback" % "logback-classic" % "1.2.3" % "runtime",
-      "org.eclipse.jetty" % "jetty-webapp" % "9.4.35.v20201120" % "container",
-      "javax.servlet" % "javax.servlet-api" % "3.1.0" % "provided"
-    ),
+      "jakarta.servlet" % "jakarta.servlet-api" % "5.0.0" % "provided",
+      "org.eclipse.jetty" % "jetty-slf4j-impl" % "11.0.11", // Required for JettyRunner
+    )
   )
 
 enablePlugins(SbtTwirl)
-enablePlugins(JettyPlugin)
+
+// Use custom containr because xsbt-web-plugin doesm't support Jetty 11 and Servlet 5
+enablePlugins(ContainerPlugin)
+Container / containerLibs := Seq("org.eclipse.jetty" %  "jetty-runner" % "11.0.11")
+Container / containerMain := "org.eclipse.jetty.runner.Runner"
