@@ -18,7 +18,7 @@ lazy val hello = (project in file("."))
 
 enablePlugins(SbtTwirl)
 
-// Use custom containr because xsbt-web-plugin doesm't support Jetty 11 and Servlet 5
+// Use custom containr because xsbt-web-plugin doesn't support Jetty 11 and Servlet 5
 enablePlugins(ContainerPlugin)
 Container / containerLibs := Seq("org.eclipse.jetty" %  "jetty-runner" % "11.0.11")
 Container / containerMain := "org.eclipse.jetty.runner.Runner"
